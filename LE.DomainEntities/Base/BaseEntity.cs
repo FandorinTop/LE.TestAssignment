@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LE.DomainEntities
+namespace LE.DomainEntities.Base
 {
     public class BaseEntity
     {
@@ -9,7 +9,6 @@ namespace LE.DomainEntities
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        //TODO make change at update
         public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
     }
 }
