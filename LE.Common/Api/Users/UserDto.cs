@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LE.Infrastructure.Services.User
+namespace LE.Common.Api.Users
 {
     public class UserDto
     {

@@ -1,4 +1,5 @@
-﻿using LE.Infrastructure.Services.Task;
+﻿using LE.Common.Api.Paginators.Tasks;
+using LE.Common.Api.Tasks;
 
 namespace LE.Infrastructure.Services
 {
@@ -8,8 +9,8 @@ namespace LE.Infrastructure.Services
 
         public Task UpdateAsync(Guid id, TaskDto dto);
 
-        public Task Get(Guid id);
+        public Task<TaskDto> Get(Guid id);
 
-        public Task<GetPaginatorResponse<TaskDto>> Get(GetPaginatorRequest dto);
+        public Task<TaskPaginatorResponse> Get(TaskPaginatorRequest dto);
     }
 }

@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LE.Common.Entities.Enums;
+using System.ComponentModel.DataAnnotations;
 
-namespace LE.Infrastructure.Services.Task
+namespace LE.Common.Api.Tasks
 {
     public class TaskDto
     {

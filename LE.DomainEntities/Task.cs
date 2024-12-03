@@ -20,6 +20,7 @@ namespace LE.DomainEntities
 
         public Status Status { get; set; } = Status.None;
 
+        [MaxLength(36)]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; } = default!;
         
