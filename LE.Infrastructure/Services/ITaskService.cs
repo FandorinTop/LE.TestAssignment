@@ -5,12 +5,14 @@ namespace LE.Infrastructure.Services
 {
     public interface ITaskService
     {
-        public Task<string> CreateAsync(TaskDto dto);
+        public Task<string> CreateAsync(Guid userId, TaskDto dto);
 
-        public Task UpdateAsync(Guid id, TaskDto dto);
+        public Task UpdateAsync(Guid userId, Guid id, TaskDto dto);
 
-        public Task<TaskDto> Get(Guid id);
+        public Task<TaskDto> GetAsync(Guid userId, Guid id);
 
-        public Task<TaskPaginatorResponse> Get(TaskPaginatorRequest dto);
+        public Task DeleteAsync(Guid userId, Guid id);
+
+        public Task<TaskPaginatorResponse> GetAsync(Guid userId, TaskPaginatorRequest dto);
     }
 }

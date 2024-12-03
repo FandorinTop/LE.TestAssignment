@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LE.DomainEntities;
+using Task = System.Threading.Tasks.Task;
 
 namespace LE.Infrastructure.Repositories
 {
     public interface IUserRepository
     {
+        public Task CreateAsync(User user);
+
+        public Task<User?> GetAsync(string email);
     }
 }

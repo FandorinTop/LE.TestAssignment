@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LE.DataAccess\LE.DataAccess.csproj" />
-    <ProjectReference Include="..\LE.Infrastructure\LE.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LE.DomainEntities\LE.DomainEntities.csproj" />
   </ItemGroup>
 
 </Project>

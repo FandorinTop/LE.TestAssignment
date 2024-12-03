@@ -22,7 +22,7 @@ namespace LE.DomainEntities
 
         [MaxLength(36)]
         [ForeignKey(nameof(User))]
-        public string UserId { get; set; } = default!;
+        public Guid UserId { get; set; } = default!;
         
         public User User { get; set; } = default!;
     }

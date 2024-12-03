@@ -9,9 +9,6 @@ namespace LE.Common.Api.Tasks
         [MaxLength(100)]
         public string Title { get; set; } = default!;
 
-        [Required]
-        public Guid UserId { get; set; } = default!;
-
         [MaxLength(300)]
         public string? Description { get; set; }
 

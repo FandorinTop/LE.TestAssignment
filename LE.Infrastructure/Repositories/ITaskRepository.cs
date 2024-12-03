@@ -5,12 +5,16 @@ namespace LE.Infrastructure.Repositories
 {
     public interface ITaskRepository
     {
-        public Task<string> CreateAsync(DomainTask dto);
+        public Task<Guid> CreateAsync(DomainTask dto);
 
-        public Task UpdateAsync(string id, DomainTask dto);
+        public Task UpdateAsync(DomainTask dto);
 
-        public Task<DomainTask> GetAsync(string id);
+        public Task<DomainTask?> GetAsync(Guid id);
 
-        public Task<IEnumerable<DomainTask>> GetAllAsync(int index = 0, int size = 10, IEnumerable<TaskSortingRequest> sortingRequests = default!, IEnumerable<TaskFilterRequest> filterRequests = default!);
+        public Task DeleteAsync(Guid id);
+
+        public Task<IEnumerable<DomainTask>> GetAllAsync(Guid userId, int index = 0, int size = 10, IEnumerable<TaskSortingRequest> sortingRequests = default!, IEnumerable<TaskFilterRequest> filterRequests = default!);
+        
+        public Task<int> CountAsync(Guid userId);
     }
 }
