@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LE.Common\LE.Common.csproj" />
-  </ItemGroup>
-
 </Project>

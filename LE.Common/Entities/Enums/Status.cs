@@ -1,4 +1,4 @@
-﻿namespace LE.DomainEntities
+﻿namespace LE.Common.Entities.Enums
 {
     public enum Status
     {

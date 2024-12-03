@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LE.WebApi", "LE.TestAssignment\LE.WebApi.csproj", "{C5DB6822-581F-490A-9D59-CC420D24C13C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LE.WebApi", "LE.TestAssignment\LE.WebApi.csproj", "{C5DB6822-581F-490A-9D59-CC420D24C13C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LE.Infrastructure", "LE.Infrastructure\LE.Infrastructure.csproj", "{DC6F935B-63C1-48CD-BD7A-C96E9A8B1ABA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LE.Infrastructure", "LE.Infrastructure\LE.Infrastructure.csproj", "{DC6F935B-63C1-48CD-BD7A-C96E9A8B1ABA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LE.DomainEntities", "LE.DomainEntities\LE.DomainEntities.csproj", "{FF752029-BA5A-47F8-9C97-A6B71DB12D0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LE.DomainEntities", "LE.DomainEntities\LE.DomainEntities.csproj", "{FF752029-BA5A-47F8-9C97-A6B71DB12D0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LE.Services", "LE.Services\LE.Services.csproj", "{D2B6BCE5-39B9-4FF5-BFE6-38D796EAD4C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LE.Services", "LE.Services\LE.Services.csproj", "{D2B6BCE5-39B9-4FF5-BFE6-38D796EAD4C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LE.Repositories", "LE.Repositories\LE.Repositories.csproj", "{2C42E17A-CE52-40FA-A91A-A0A6FE63C081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LE.Repositories", "LE.Repositories\LE.Repositories.csproj", "{2C42E17A-CE52-40FA-A91A-A0A6FE63C081}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LE.Common", "LE.Common\LE.Common.csproj", "{3F1CC171-2457-45F9-A41C-C7EF5566C5D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{2C42E17A-CE52-40FA-A91A-A0A6FE63C081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C42E17A-CE52-40FA-A91A-A0A6FE63C081}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C42E17A-CE52-40FA-A91A-A0A6FE63C081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F1CC171-2457-45F9-A41C-C7EF5566C5D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F1CC171-2457-45F9-A41C-C7EF5566C5D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F1CC171-2457-45F9-A41C-C7EF5566C5D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F1CC171-2457-45F9-A41C-C7EF5566C5D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using LE.Common.Entities.Enums;
 using LE.DomainEntities.Base;
 
 namespace LE.DomainEntities
