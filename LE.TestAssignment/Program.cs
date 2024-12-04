@@ -1,4 +1,3 @@
-
 using LE.DataAccess;
 using LE.Infrastructure.Repositories;
 using LE.Infrastructure.Services;
@@ -82,7 +81,7 @@ namespace LE.WebApi
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtOption:Secret"]!))
                 };
             });
-
+            builder.Services.AddExceptionHandler<ExceptionHandler>();
 
             var app = builder.Build();
 
@@ -99,6 +98,7 @@ namespace LE.WebApi
             app.UseAuthorization();
 
             app.MapControllers();
+            app.UseExceptionHandler("/Error");
 
             app.Run();
         }

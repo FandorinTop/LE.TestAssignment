@@ -29,12 +29,17 @@ namespace LE.Services
         public async Task<Guid> CreateAsync(UserDto dto)
         {
             var passwordHash = _passwordHasher.HashPassword(dto.Password);
+            var normalizeEmail = dto.Email.ToLower();
+            var normalizeUsername = dto.Username.ToLower();
+
+            if (await _repository.IsReservedAsync(normalizeEmail, normalizeUsername))
+                throw new ReservedFieldException($"Email or username reserved");
 
             var user = new User()
             {
-                Email = dto.Email,
+                Email = normalizeEmail,
                 PasswordHash = passwordHash,
-                Username = dto.Username
+                Username = normalizeUsername
             };
 
             await _repository.CreateAsync(user);
@@ -44,11 +49,11 @@ namespace LE.Services
 
         public async Task<LoginResponse> Login(LoginRequest dto)
         {
-            var user = await _repository.GetAsync(dto.Email) ?? throw new RecordNotFoundException();
+            var user = await _repository.GetAsync(dto.Email) ?? throw new RecordNotFoundException($"No user with email: '{dto.Email}'");
 
             if (!_passwordHasher.VerifyHashedPassword(user.PasswordHash, dto.Password))
             {
-                throw new AuthenticationException();
+                throw new AuthenticationException("Wrong password");
             }
 
             var claims = new List<Claim>()

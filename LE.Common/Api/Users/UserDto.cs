@@ -10,6 +10,7 @@ namespace LE.Common.Api.Users
 
         [Required]
         [MaxLength(100)]
+        [EmailAddress]
         public string Email { get; set; } = default!;
 
         [Required]

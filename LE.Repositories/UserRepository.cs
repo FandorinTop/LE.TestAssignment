@@ -25,5 +25,10 @@ namespace LE.Repositories
         {
             return await _context.Users.FirstOrDefaultAsync(item => item.Email == email);
         }
+
+        public async Task<bool> IsReservedAsync(string email, string username)
+        {
+            return await _context.Users.AnyAsync(item => item.Email == email && item.Username == username);
+        }
     }
 }

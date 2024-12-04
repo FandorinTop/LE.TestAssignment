@@ -1,5 +1,8 @@
-﻿namespace LE.Common.Exceptions
+﻿using System.Runtime.Serialization;
+
+namespace LE.Common.Exceptions
 {
+
     public class RecordNotFoundException : Exception
     {
         public RecordNotFoundException()
