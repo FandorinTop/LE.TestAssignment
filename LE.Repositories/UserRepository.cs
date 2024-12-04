@@ -28,7 +28,7 @@ namespace LE.Repositories
 
         public async Task<bool> IsReservedAsync(string email, string username)
         {
-            return await _context.Users.AnyAsync(item => item.Email == email && item.Username == username);
+            return await _context.Users.AnyAsync(item => item.Email == email || item.Username == username);
         }
     }
 }
