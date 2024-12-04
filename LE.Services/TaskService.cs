@@ -47,15 +47,26 @@ namespace LE.Services
 
         public async Task<TaskPaginatorResponse> GetAsync(Guid userId, TaskPaginatorRequest dto)
         {
+            var filters = dto.TaskFilterRequest is null 
+                ? new List<TaskFilterRequest>() 
+                : new List<TaskFilterRequest>() { dto.TaskFilterRequest };
+
+            var sorting = dto.TaskSortingRequest is null
+                ? new List<TaskSortingRequest>()
+                : new List<TaskSortingRequest>() { dto.TaskSortingRequest };
+
             var response = await _repository.GetAllAsync(
                 userId,
                 dto.PageIndex,
                 dto.PageSize,
-                dto.SortingRequests,
-                dto.FilterRequests
+                sorting,
+                filters
+                
+                //dto.SortingRequests,
+                //dto.FilterRequests
                 );
 
-            var count = await _repository.CountAsync(userId, dto.FilterRequests);
+            var count = await _repository.CountAsync(userId, filters);
             var res = _mapper.Map<List<DomainTask>, List<TaskDto>> (new List<DomainTask>(response));
 
 
