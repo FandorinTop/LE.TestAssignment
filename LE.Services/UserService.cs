@@ -1,13 +1,13 @@
-﻿using LE.Infrastructure.Services;
-using LE.Common.Api.Users;
-using LE.Infrastructure.Repositories;
-using LE.DomainEntities;
-using System.Security.Authentication;
+﻿using LE.Common.Api.Users;
 using LE.Common.Exceptions;
+using LE.DomainEntities;
+using LE.Infrastructure.Repositories;
+using LE.Infrastructure.Services;
 using LE.Services.Options;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Authentication;
+using System.Security.Claims;
 
 namespace LE.Services
 {
@@ -37,7 +37,7 @@ namespace LE.Services
                 Username = dto.Username
             };
 
-            await _repository.CreateAsync(user) ;
+            await _repository.CreateAsync(user);
 
             return user.Id;
         }
@@ -46,7 +46,7 @@ namespace LE.Services
         {
             var user = await _repository.GetAsync(dto.Email) ?? throw new RecordNotFoundException();
 
-            if(!_passwordHasher.VerifyHashedPassword(user.PasswordHash, dto.Password))
+            if (!_passwordHasher.VerifyHashedPassword(user.PasswordHash, dto.Password))
             {
                 throw new AuthenticationException();
             }

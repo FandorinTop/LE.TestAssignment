@@ -1,9 +1,8 @@
 ﻿using LE.DataAccess;
 using LE.DomainEntities;
 using LE.Infrastructure.Repositories;
-using Task = System.Threading.Tasks.Task;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Task = System.Threading.Tasks.Task;
 
 namespace LE.Repositories
 {

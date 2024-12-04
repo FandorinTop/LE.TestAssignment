@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using LE.Common.Entities.Enums;
+﻿using LE.Common.Entities.Enums;
 using LE.DomainEntities.Base;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LE.DomainEntities
 {
@@ -23,7 +23,7 @@ namespace LE.DomainEntities
         [MaxLength(36)]
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; } = default!;
-        
+
         public User User { get; set; } = default!;
     }
 }

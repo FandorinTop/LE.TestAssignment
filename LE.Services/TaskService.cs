@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using LE.Common.Api.Paginators.Tasks;
 using LE.Common.Api.Tasks;
+using LE.Common.Exceptions;
+using LE.DomainEntities.Base;
 using LE.Infrastructure.Repositories;
 using LE.Infrastructure.Services;
 using DomainTask = LE.DomainEntities.Task;
 using Task = System.Threading.Tasks.Task;
-using LE.DomainEntities.Base;
-using LE.Common.Exceptions;
-using System.Collections.Generic;
 
 namespace LE.Services
 {
@@ -47,8 +46,8 @@ namespace LE.Services
 
         public async Task<TaskPaginatorResponse> GetAsync(Guid userId, TaskPaginatorRequest dto)
         {
-            var filters = dto.TaskFilterRequest is null 
-                ? new List<TaskFilterRequest>() 
+            var filters = dto.TaskFilterRequest is null
+                ? new List<TaskFilterRequest>()
                 : new List<TaskFilterRequest>() { dto.TaskFilterRequest };
 
             var sorting = dto.TaskSortingRequest is null
@@ -61,13 +60,13 @@ namespace LE.Services
                 dto.PageSize,
                 sorting,
                 filters
-                
+
                 //dto.SortingRequests,
                 //dto.FilterRequests
                 );
 
             var count = await _repository.CountAsync(userId, filters);
-            var res = _mapper.Map<List<DomainTask>, List<TaskDto>> (new List<DomainTask>(response));
+            var res = _mapper.Map<List<DomainTask>, List<TaskDto>>(new List<DomainTask>(response));
 
 
             return new TaskPaginatorResponse()
@@ -80,12 +79,12 @@ namespace LE.Services
             };
         }
 
-        public async Task UpdateAsync(Guid userId, Guid id,  TaskDto dto)
+        public async Task UpdateAsync(Guid userId, Guid id, TaskDto dto)
         {
             var task = _mapper.Map<TaskDto, DomainTask>(dto, (options) => AddId(options, userId, id));
 
             await _repository.UpdateAsync(task);
-        } 
+        }
 
         public async Task DeleteAsync(Guid userId, Guid id)
         {

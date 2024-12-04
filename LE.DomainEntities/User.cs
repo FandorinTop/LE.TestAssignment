@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using LE.DomainEntities.Base;
+﻿using LE.DomainEntities.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace LE.DomainEntities
 {

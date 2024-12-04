@@ -1,10 +1,10 @@
 ﻿using LE.Common.Api.Paginators.Tasks;
-using LE.Infrastructure.Repositories;
-using DomainTask = LE.DomainEntities.Task;
-using LE.DataAccess;
 using LE.Common.Api.Paginators.Tasks.Enums;
 using LE.Common.Entities.Enums;
+using LE.DataAccess;
+using LE.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using DomainTask = LE.DomainEntities.Task;
 
 namespace LE.Repositories
 {
