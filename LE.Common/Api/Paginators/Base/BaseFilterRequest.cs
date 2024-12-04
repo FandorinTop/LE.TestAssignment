@@ -6,7 +6,6 @@ namespace LE.Common.Api.Paginators.Base
     {
         public TFilterEnum Filter { get; set; } = default!;
 
-        [Required]
         [MaxLength(100)]
         public string FilterQuery { get; set; } = default!;
     }

@@ -6,9 +6,12 @@ using LE.Infrastructure.Services;
 using DomainTask = LE.DomainEntities.Task;
 using Task = System.Threading.Tasks.Task;
 using LE.DomainEntities.Base;
+using LE.Common.Exceptions;
+using System.Collections.Generic;
 
 namespace LE.Services
 {
+    //TODO add uniq email/username validation
     public class TaskService : ITaskService
     {
         private readonly ITaskRepository _repository;
@@ -34,7 +37,7 @@ namespace LE.Services
 
             if (task.UserId != userId)
             {
-                throw new UnauthorizedAccessException();
+                throw new UnauthorizedActionException();
             }
 
             var dto = _mapper.Map<TaskDto>(task);
@@ -44,12 +47,21 @@ namespace LE.Services
 
         public async Task<TaskPaginatorResponse> GetAsync(Guid userId, TaskPaginatorRequest dto)
         {
-            var response = await _repository.GetAllAsync(userId, dto.PageIndex, dto.PageSize, dto.SortingRequests, dto.FilterRequests);
-            var count = await _repository.CountAsync(userId);
+            var response = await _repository.GetAllAsync(
+                userId,
+                dto.PageIndex,
+                dto.PageSize,
+                dto.SortingRequests,
+                dto.FilterRequests
+                );
+
+            var count = await _repository.CountAsync(userId, dto.FilterRequests);
+            var res = _mapper.Map<List<DomainTask>, List<TaskDto>> (new List<DomainTask>(response));
+
 
             return new TaskPaginatorResponse()
             {
-                Data = _mapper.Map<IEnumerable<TaskDto>>(response),
+                Data = res,
                 PageIndex = dto.PageIndex,
                 PageSize = dto.PageSize,
                 TotalCount = count,
@@ -57,12 +69,12 @@ namespace LE.Services
             };
         }
 
-        public async Task UpdateAsync(Guid id, Guid userId, TaskDto dto)
+        public async Task UpdateAsync(Guid userId, Guid id,  TaskDto dto)
         {
             var task = _mapper.Map<TaskDto, DomainTask>(dto, (options) => AddId(options, userId, id));
 
             await _repository.UpdateAsync(task);
-        }
+        } 
 
         public async Task DeleteAsync(Guid userId, Guid id)
         {
@@ -70,7 +82,7 @@ namespace LE.Services
 
             if (task.UserId != userId)
             {
-                throw new UnauthorizedAccessException();
+                throw new UnauthorizedActionException();
             }
 
             await _repository.DeleteAsync(id);

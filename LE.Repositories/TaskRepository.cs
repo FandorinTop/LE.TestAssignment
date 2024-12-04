@@ -2,9 +2,9 @@
 using LE.Infrastructure.Repositories;
 using DomainTask = LE.DomainEntities.Task;
 using LE.DataAccess;
-using Microsoft.EntityFrameworkCore;
 using LE.Common.Api.Paginators.Tasks.Enums;
 using LE.Common.Entities.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace LE.Repositories
 {
@@ -17,9 +17,11 @@ namespace LE.Repositories
             _context = context;
         }
 
-        public async Task<int> CountAsync(Guid userId)
+        public async Task<int> CountAsync(Guid userId, IEnumerable<TaskFilterRequest> filterRequests = null!)
         {
-            return await _context.Tasks
+            var dataQuery = AddFilters(_context.Tasks, filterRequests);
+
+            return await dataQuery
                 .Where(item => item.UserId == userId)
                 .AsNoTracking()
                 .CountAsync();
@@ -49,7 +51,6 @@ namespace LE.Repositories
         public async Task<IEnumerable<DomainTask>> GetAllAsync(Guid userId, int index = 0, int size = 10, IEnumerable<TaskSortingRequest> sortingRequests = null!, IEnumerable<TaskFilterRequest> filterRequests = null!)
         {
             var dataQuery = _context.Tasks
-                .AsNoTracking()
                 .Where(item => item.UserId == userId)
                 .Skip(size * index)
                 .Take(size);
@@ -62,13 +63,17 @@ namespace LE.Repositories
 
         public async Task DeleteAsync(Guid id)
         {
-            await _context.Tasks
-                .Where(item => item.Id == id)
-                .ExecuteDeleteAsync();
+            var task = await _context.Tasks.FindAsync(id);
+
+            if (task is null)
+                return;
+
+            _context.Tasks.Remove(task);
+            await _context.SaveChangesAsync();
         }
 
         #region Sorting
-        private IOrderedQueryable<DomainTask> AddSorting(IQueryable<DomainTask> dataQuery, IEnumerable<TaskSortingRequest> sortingRequests)
+        private IQueryable<DomainTask> AddSorting(IQueryable<DomainTask> dataQuery, IEnumerable<TaskSortingRequest> sortingRequests)
         {
             IOrderedQueryable<DomainTask> orderedQuery = default!;
 
@@ -80,7 +85,7 @@ namespace LE.Repositories
                     orderedQuery = AddSorting(orderedQuery, sortingRequest);
             }
 
-            return orderedQuery;
+            return orderedQuery ?? dataQuery;
         }
 
         private IOrderedQueryable<DomainTask> AddSorting(IQueryable<DomainTask> dataQuery, TaskSortingRequest sortingRequest)

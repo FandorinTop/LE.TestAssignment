@@ -15,6 +15,6 @@ namespace LE.Infrastructure.Repositories
 
         public Task<IEnumerable<DomainTask>> GetAllAsync(Guid userId, int index = 0, int size = 10, IEnumerable<TaskSortingRequest> sortingRequests = default!, IEnumerable<TaskFilterRequest> filterRequests = default!);
         
-        public Task<int> CountAsync(Guid userId);
+        public Task<int> CountAsync(Guid userId, IEnumerable<TaskFilterRequest> filterRequests = default!);
     }
 }
