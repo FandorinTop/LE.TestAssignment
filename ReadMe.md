@@ -15,3 +15,14 @@ Security:
     Secure all task-related endpoints using JWT authentication.
     Ensure proper authorization checks to confirm users can only access their own tasks.
 Pagination: Implement pagination for the GET /tasks endpoint.
+
+Для обробки помилок використовується IExceptionHandler, який перехоплює усі помилки та опрацьовує їх. Було вирішено використати паттерн Repository для майбутнього переходу проекту на іншу базу даних, без зміни коду запитів до бази даних.  Для мапінгу даних використовується AutoMapper. 
+
+Огляньмо архітектуру проектів 
+LE.WebApi - наш веб сервер який відповідає за обробку запитів
+LE.Common - проект який утримує загальну логіку проекту, такі як контракти, та помилки, та emums 
+LE.DataAccess - проект потрібн для ORM EntityFrameworkCore
+LE.DomainEntities - проект який утримує модель бази данних
+LE.Infrastructure - проект який утримує усі інтерфейси для інфрастуктури
+LE.Repositories - проект який реалізує репозиторії інфраструктури 
+LE.Services -  проект який реалізує сервіси інфраструктури
